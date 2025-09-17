@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cartilla de Ahorro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="cartilla">
+
+    <div class="titulo-logos">
+      <img src="https://raw.githubusercontent.com/magalyarteaga/magalyarteaga.github.io/refs/heads/main/Images/logo_institucion.jpg" alt="Institución" class="logo titulo-logo" />
+      <h1 class="titulo" id="tituloPrincipal">PLANTILLA DE MONTOS</h1>
+      <img src="https://raw.githubusercontent.com/magalyarteaga/magalyarteaga.github.io/refs/heads/main/Images/logo_empresa.png" alt="Empresa" class="logo titulo-logo" />
+    </div>
+
+    <div id="fraseImpresion" class="frase-impresion"></div>
+
+    <div class="controls">
+      <label>Escribe tu meta de ahorro:
+        <input type="text" id="meta" placeholder="Meta" />
+      </label>
+      <label>Monto total a ahorrar:
+        <input type="number" id="goal" min="1" step="1" />
+      </label>
+      <label>Número de casillas (máximo 100):
+        <input type="number" id="numCasillas" min="1" max="100" value="10" />
+      </label>
+
+      <div class="checkboxes">
+        <strong>Selecciona los montos que quieres usar:</strong>
+        <label><input type="checkbox" class="monto" value="1" checked /> 1</label>
+        <label><input type="checkbox" class="monto" value="2" checked /> 2</label>
+        <label><input type="checkbox" class="monto" value="5" checked /> 5</label>
+        <label><input type="checkbox" class="monto" value="10" checked /> 10</label>
+        <label><input type="checkbox" class="monto" value="20" /> 20</label>
+        <label><input type="checkbox" class="monto" value="50" /> 50</label>
+        <label><input type="checkbox" class="monto" value="100" /> 100</label>
+      </div>
+
+      <button class="btn" onclick="generarCasillas()">Generar Casillas</button>
+      <button class="btn" onclick="window.print()">Guardar como PDF</button>
+    </div>
+
+    <div class="meta-display" id="metaTexto">Meta:</div>
+    <div class="monto-total" id="montoTotal">Monto total a ahorrar: S/ 0</div>
+
+    <div class="summary">
+      <span>Total Ahorrado: <span id="ahorrado">S/ 0</span></span><br />
+      <span>Progreso: <span id="progreso">0%</span></span>
+    </div>
+
+    <div class="grid-layout-wrapper">
+      <div class="grid-container">
+        <table id="grid"></table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
