@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Dancing+Script&display=swap');
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 1rem;
+  color: #333;
+}
+
+.cartilla {
+  border: 2px solid #999;
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 720px;
+  margin: 1rem auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-logos {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 0.7cm;
+  margin-bottom: 10px;
+}
+
+.titulo-logo.logo {
+  height: 48px;
+  background: #f5f5f5;
+  border: 1.2px solid #bbb;
+  padding: 2px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.titulo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #1b263b;
+}
+
+.frase-impresion {
+  display: none;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: #444;
+  text-align: center;
+  margin: 0.3rem 0 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 2.5rem;
+}
+
+.meta-display,
+.monto-total {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 0.3rem 0;
+}
+
+.controls {
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[type='number'],
+input[type='text'],
+button {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkboxes label {
+  font-size: 0.9rem;
+}
+
+.grid-container {
+  overflow: visible;
+  margin: auto;
+  width: fit-content;
+}
+
+table#grid {
+  border-collapse: collapse;
+  margin: auto;
+  width: 14cm;
+  height: 8cm;
+  table-layout: fixed;
+  border: 2px solid #444;
+}
+
+/* Celdas con Comic Sans MS más grande y bordes gruesos */
+td.cell {
+  border: 2px solid #444;
+  background: #fff;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  width: 10%; /* 10 columnas */
+  height: calc(8cm / var(--filas, 8));
+  box-sizing: border-box;
+}
+
+/* Borde inferior en última fila (especialmente para impresión) */
+table#grid tr:last-child td {
+  border-bottom: 2px solid #444;
+}
+
+td.cell.saved {
+  background: #d9ead3;
+  border-color: #6aa84f;
+  font-weight: bold;
+  color: #38761d;
+}
+
+.summary {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #369b37;
+}
+
+@media print {
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    background: white !important;
+  }
+
+  .cartilla {
+    width: 15.5cm !important;
+    height: 15.5cm !important;
+    border: 2.5px solid #222 !important;
+    padding: 1rem !important;
+    box-sizing: border-box;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    overflow: visible !important;
+  }
+
+  .titulo-logos {
+    margin-top: 0.6cm !important;
+    margin-bottom: 0.2cm !important;
+    display: flex !important;
+  }
+
+  .controls,
+  .btn,
+  .summary {
+    display: none !important;
+  }
+
+  #tituloPrincipal {
+    display: none !important;
+  }
+
+  #fraseImpresion {
+    display: block !important;
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 1.3rem !important;
+    color: #444 !important;
+    text-align: center !important;
+    margin: 0.3rem 0 0.6rem 0 !important;
+  }
+
+  .grid-container {
+    width: 14cm !important;
+    height: 8cm !important;
+    overflow: visible !important;
+    margin: auto !important;
+    padding: 0 !important;
+  }
+
+  table#grid {
+    width: 14cm !important;
+    height: 8cm !important;
+    border-collapse: collapse !important;
+    border: 2px solid #444 !important;
+  }
+
+  /* Borde inferior visible en la última fila */
+  table#grid tr:last-child td {
+    border-bottom: 2px solid #444 !important;
+  }
+
+  td.cell {
+    font-size: 1.1rem !important;
+    padding: 0 !important;
+    height: calc(8cm / var(--filas, 8)) !important;
+  }
+
+  .meta-display,
+  .monto-total {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    text-align: center !important;
+    margin: 0.15rem 0 0.5rem 0 !important;
+  }
+}
