@@ -77,6 +77,35 @@ function generarCasillas() {
   const fraseImp = document.getElementById('fraseImpresion');
   fraseImp.innerText = obtenerFraseAleatoria();
   fraseImp.style.display = 'none'; // solo visible en impresión
+  // === Generar QR con ID único ===
+  const cartillaID = "CART-" + Date.now(); // ID único basado en fecha/hora
+
+  // Limpiar QR anterior
+  document.getElementById("qrcode").innerHTML = "";
+
+  // Crear el QR
+  new QRCode(document.getElementById("qrcode"), {
+    text: cartillaID,
+    width: 80,
+    height: 80
+  });
+// === Guardar datos en Google Sheets vía Apps Script ===
+  fetch("https://script.google.com/macros/s/AKfycbzKlzpyAYLjf2FZxWVrZcC1RDkdZKdRb696iqrnohkrz-3wUoZUFhtFAg3ltTbDe2NF/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      id: cartillaID,
+      meta: document.getElementById('meta').value,
+      total: document.getElementById('goal').value,
+      montos: montos
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(r => r.json())
+  .then(resp => console.log("Guardado en Google Sheets:", resp))
+  .catch(err => console.error("Error al guardar:", err));
+
 }
 
 function distribuirMontos(total, cantidad, valoresPosibles) {
@@ -107,6 +136,7 @@ function distribuirMontos(total, cantidad, valoresPosibles) {
     return distribuirMontos(total, cantidad, valoresPosibles);
   }
   return montos.sort(() => Math.random() - 0.5);
+ 
 }
 
 function toggle(index, td) {
@@ -125,3 +155,4 @@ function actualizarResumen() {
 window.onbeforeprint = () => document.getElementById('fraseImpresion').style.display = 'block';
 
 window.onafterprint = () => document.getElementById('fraseImpresion').style.display = 'none';
+
