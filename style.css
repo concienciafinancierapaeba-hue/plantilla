@@ -38,6 +38,24 @@ body {
   border-radius: 5px;
   object-fit: contain;
 }
+/* Ocultar QR en pantalla */
+#qrcode {
+  display: none;
+}
+
+/* Mostrar QR solo al imprimir */
+@media print {
+  #qrcode {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+  }
+  #qrcode canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
 
 .titulo {
   font-family: 'Playfair Display', serif;
